@@ -103,7 +103,6 @@ function renderNode(node: SerializedNode): string {
 }
 
 const { data } = Astro.props;
-console.log("🚀 ~ data:", data);
 
 const html = convertLexicalToHTML({ data: data as SerializedEditorState });
 ---
