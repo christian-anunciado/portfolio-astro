@@ -1,0 +1,111 @@
+---
+// Define our own type for SerializedEditorState
+type SerializedNode = {
+  type: string;
+  children?: SerializedNode[];
+  format?: string | number;
+  style?: string;
+  text?: string;
+  version?: number;
+  tag?: string;
+  direction?: string | null;
+  indent?: number;
+  url?: string;
+};
+
+type SerializedEditorState = {
+  root: {
+    children: SerializedNode[];
+    direction: string | null;
+    format: string | number;
+    indent: number;
+    type: string;
+    version: number;
+  };
+};
+
+// Our custom HTML converter
+function convertLexicalToHTML({ data }: { data: SerializedEditorState }): string {
+  if (!data || !data.root) return '';
+
+  return renderNode(data.root);
+}
+
+function renderNode(node: SerializedNode): string {
+  if (!node) return '';
+
+  if (node.text) {
+    let text = node.text;
+
+    // 0 = normal
+    // 1 = bold
+    // 2 = italic
+    // 3 = underline
+    // 4 = strikethrough
+    // 5 = code
+
+
+    // Handle formatting
+    if (node.format === 'bold' || node.type === 'bold' || node.format === 1) {
+      text = `<strong>${text}</strong>`;
+    } else if (node.format === 'italic' || node.type === 'italic' || node.format === 2) {
+      text = `<em>${text}</em>`;
+    } else if (node.format === 'underline' || node.type === 'underline' || node.format === 3) {
+      text = `<u>${text}</u>`;
+    } else if (node.format === 'strikethrough' || node.type === 'strikethrough' || node.format === 4) {
+      text = `<s>${text}</s>`;
+    } else if (node.format === 'code' || node.type === 'code' || node.format === 5) {
+      text = `<code>${text}</code>`;
+    }
+
+    return text;
+  }
+
+  if (node.type === 'paragraph') {
+    const childContent = node.children?.map(renderNode).join('') || '';
+    const style = node.format ? ` style="text-align: ${node.format}"` : '';
+    return `<p${style}>${childContent}</p>`;
+  }
+
+  if (node.type === 'heading') {
+    const level = node.tag?.replace('h', '') || '1';
+    const childContent = node.children?.map(renderNode).join('') || '';
+    return `<h${level}>${childContent}</h${level}>`;
+  }
+
+  if (node.type === 'list') {
+    const tag = node.tag === 'ol' ? 'ol' : 'ul';
+    const childContent = node.children?.map(renderNode).join('') || '';
+    return `<${tag}>${childContent}</${tag}>`;
+  }
+
+  if (node.type === 'listitem') {
+    const childContent = node.children?.map(renderNode).join('') || '';
+    return `<li>${childContent}</li>`;
+  }
+
+  if (node.type === 'link') {
+    const childContent = node.children?.map(renderNode).join('') || '';
+    return `<a href="${node.url || '#'}">${childContent}</a>`;
+  }
+
+  if (node.type === 'quote') {
+    const childContent = node.children?.map(renderNode).join('') || '';
+    return `<blockquote>${childContent}</blockquote>`;
+  }
+
+  // Default handling for other nodes with children
+  if (node.children && node.children.length > 0) {
+    return node.children.map(renderNode).join('');
+  }
+
+  return '';
+}
+
+const { data } = Astro.props;
+console.log("🚀 ~ data:", data);
+
+const html = convertLexicalToHTML({ data: data as SerializedEditorState });
+---
+
+<div class="prose max-w-3xl dark:prose-invert prose-default prose-base prose-h1:text-4xl prose-h1:font-bold prose-strong:tracking-widest prose-lead:text-red-400" set:html={html}></div>

@@ -1,0 +1,28 @@
+---
+import { AnimatedTooltip } from "../../../components/tsx/animated-tooltip";
+import type { Icon } from "../projects";
+
+interface Props {
+  icons: Icon[];
+}
+
+const { icons } = Astro.props;
+---
+
+<div class="mb-4 flex items-center gap-4">
+  {
+    icons.map((icon, idx) => (
+      <AnimatedTooltip
+        items={{
+          href: icon.href,
+          src: icon.src,
+          name: icon.alt,
+          id: idx,
+          darkSrc: icon.darkSrc,
+        }}
+        imgClassName="h-6 w-6"
+        client:visible
+      />
+    ))
+  }
+</div>

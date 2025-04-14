@@ -1,0 +1,19 @@
+---
+interface Props {
+  className?: string;
+  transitionName?: string;
+}
+
+const { className, transitionName } = Astro.props;
+import { cn } from "../shared/cn";
+---
+
+<span
+  class={cn(
+    "text-lg font-medium tracking-widest text-sky-600 dark:text-sky-500",
+    className,
+  )}
+  transition:name={transitionName || "titleText"}
+>
+  <slot />
+</span>

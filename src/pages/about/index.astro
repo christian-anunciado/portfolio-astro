@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+import programmer from "../../assets/images/programmer.png";
+import Avatar from "../../components/Avatar.astro";
+import HeaderText from "../../components/HeaderText.astro";
+import MainContainer from "../../components/MainContainer.astro";
+import RichText from "../../components/RichText.astro";
+import TitleText from "../../components/TitleText.astro";
+import Technology from "../../features/about/Technology";
+import Layout from "../../layouts/Layout.astro";
+import type { Page } from "../../shared/payload-types";
+import type { PaginatedResponse } from "../../shared/types";
+
+const res = await fetch(`http://localhost:3000/api/pages?where[slug][equals]=about`)
+const data = (await res.json()) as PaginatedResponse<Page>
+const technologies = data.docs[0].layout?.find((item) => item.blockType === 'technology')
+---
+
+
+<Layout>
+  <MainContainer>
+    <div class="flex w-fit flex-col gap-5 pb-10 md:pb-0">
+      <div class="flex w-full items-center justify-center md:hidden">
+        <Avatar class="block md:hidden" />
+      </div>
+      <TitleText> {data.docs[0].subheader} </TitleText>
+      <HeaderText className="flex items-center gap-5">
+        {data.docs[0].header} <Image
+          src={programmer}
+          alt="Programmer"
+          class="inline-flex"
+        />
+      </HeaderText>
+      <RichText data={data.docs[0].description} />
+      <Technology client:visible technologies={technologies?.technologies ?? []} />
+    </div>
+  </MainContainer>
+</Layout>

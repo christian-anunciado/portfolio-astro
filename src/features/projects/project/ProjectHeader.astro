@@ -1,0 +1,25 @@
+---
+import HeaderText from "../../../components/HeaderText.astro";
+import TitleText from "../../../components/TitleText.astro";
+
+interface Props {
+  subTitle: string;
+  title: string;
+}
+
+const { subTitle, title } = Astro.props;
+---
+
+<TitleText
+  className="text-sm font-medium uppercase tracking-wide md:text-base"
+  transitionName={`${title.split(" ")[0]}-descText`}
+>
+  {subTitle}
+</TitleText>
+<HeaderText
+  className="mb-2 text-2xl font-bold md:text-3xl"
+  transitionName={`${title.split(" ")[0]}-titleText`}
+>
+  {title}
+</HeaderText>
+<div class="mb-2 h-1.5 w-1/5 bg-sky-700/80 dark:bg-sky-700"></div>

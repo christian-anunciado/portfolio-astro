@@ -1,0 +1,19 @@
+---
+interface Props {
+  className?: string;
+  transitionName?: string;
+}
+
+const { className, transitionName } = Astro.props;
+import { cn } from "../shared/cn";
+---
+
+<h1
+  class={cn(
+    "text-4xl font-bold tracking-wide md:text-5xl text-slate-800 dark:text-white",
+    className,
+  )}
+  transition:name={transitionName || "headerText"}
+>
+  <slot />
+</h1>
