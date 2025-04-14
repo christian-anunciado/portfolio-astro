@@ -68,8 +68,10 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
-    posts: Post;
+    projects: Project;
+    icons: Icon;
     media: Media;
+    posts: Post;
     categories: Category;
     users: User;
     redirects: Redirect;
@@ -84,8 +86,10 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
-    posts: PostsSelect<false> | PostsSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    icons: IconsSelect<false> | IconsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
@@ -229,6 +233,7 @@ export interface Media {
     };
     [k: string]: unknown;
   } | null;
+  _key?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -242,6 +247,7 @@ export interface Media {
   focalY?: number | null;
   sizes?: {
     thumbnail?: {
+      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -250,6 +256,7 @@ export interface Media {
       filename?: string | null;
     };
     square?: {
+      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -258,6 +265,7 @@ export interface Media {
       filename?: string | null;
     };
     small?: {
+      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -266,6 +274,7 @@ export interface Media {
       filename?: string | null;
     };
     medium?: {
+      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -274,6 +283,7 @@ export interface Media {
       filename?: string | null;
     };
     large?: {
+      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -282,6 +292,7 @@ export interface Media {
       filename?: string | null;
     };
     xlarge?: {
+      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -290,6 +301,7 @@ export interface Media {
       filename?: string | null;
     };
     og?: {
+      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -755,14 +767,47 @@ export interface Form {
 export interface TechnologyBlock {
   technologies?:
     | {
-        default: number | Media;
-        darkMode?: (number | null) | Media;
+        default: number | Icon;
         id?: string | null;
       }[]
     | null;
   id?: string | null;
   blockName?: string | null;
   blockType: "technology";
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons".
+ */
+export interface Icon {
+  id: number;
+  name: string;
+  src: string;
+  darkModeSrc?: string | null;
+  source?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  subTitle: string;
+  description: string;
+  thumbnail: number | Media;
+  technologies: {
+    technology?: (number | null) | Media;
+    id?: string | null;
+  }[];
+  liveUrl?: string | null;
+  githubUrl?: string | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -941,12 +986,20 @@ export interface PayloadLockedDocument {
         value: number | Page;
       } | null)
     | ({
-        relationTo: "posts";
-        value: number | Post;
+        relationTo: "projects";
+        value: number | Project;
+      } | null)
+    | ({
+        relationTo: "icons";
+        value: number | Icon;
       } | null)
     | ({
         relationTo: "media";
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: "posts";
+        value: number | Post;
       } | null)
     | ({
         relationTo: "categories";
@@ -1152,11 +1205,146 @@ export interface TechnologyBlockSelect<T extends boolean = true> {
     | T
     | {
         default?: T;
-        darkMode?: T;
         id?: T;
       };
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  title?: T;
+  subTitle?: T;
+  description?: T;
+  thumbnail?: T;
+  technologies?:
+    | T
+    | {
+        technology?: T;
+        id?: T;
+      };
+  liveUrl?: T;
+  githubUrl?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons_select".
+ */
+export interface IconsSelect<T extends boolean = true> {
+  name?: T;
+  src?: T;
+  darkModeSrc?: T;
+  source?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  href?: T;
+  caption?: T;
+  _key?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              _key?: T;
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        square?:
+          | T
+          | {
+              _key?: T;
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        small?:
+          | T
+          | {
+              _key?: T;
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        medium?:
+          | T
+          | {
+              _key?: T;
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        large?:
+          | T
+          | {
+              _key?: T;
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        xlarge?:
+          | T
+          | {
+              _key?: T;
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        og?:
+          | T
+          | {
+              _key?: T;
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1188,100 +1376,6 @@ export interface PostsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
- */
-export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
-  href?: T;
-  caption?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
-  sizes?:
-    | T
-    | {
-        thumbnail?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        square?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        small?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        medium?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        large?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        xlarge?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        og?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1743,7 +1837,7 @@ export interface Auth {
   [k: string]: unknown;
 }
 
-// @ts-expect-error
+// @ts-ignore
 declare module "payload" {
   export interface GeneratedTypes extends Config {}
 }

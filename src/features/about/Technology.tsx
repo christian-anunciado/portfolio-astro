@@ -1,34 +1,37 @@
 import { AnimatedTooltip } from "../../components/tsx/animated-tooltip";
-import type { Media, TechnologyBlock } from "../../shared/payload-types";
+import type { Icon, TechnologyBlock } from "../../shared/payload-types";
 
 type Props = {
   technologies: TechnologyBlock["technologies"];
 };
 
 function Technology({ technologies }: Props) {
-  const isMedia = (value: unknown): value is Media => {
-    return typeof value === "object" && value !== null && "url" in value;
+  // return icon if it is an icon
+  const isIcon = (value: unknown) => {
+    if (typeof value === "object" && value !== null && "src" in value) {
+      return value as Icon;
+    }
+    return null;
   };
   return (
     <div>
       <div className="grid grid-cols-4 place-items-center gap-8 md:grid-cols-8">
-        {technologies.map((tech, idx) => (
-          <AnimatedTooltip
-            key={idx}
-            items={{
-              href: isMedia(tech.default) ? tech.default.href : "",
-              src: isMedia(tech.default)
-                ? `http://localhost:3000${tech.default.url}`
-                : "",
-              name: isMedia(tech.default) ? tech.default.alt : "",
-              darkSrc: isMedia(tech.darkMode ?? tech.default)
-                ? // @ts-ignore
-                  `http://localhost:3000${(tech.darkMode ?? tech.default).url}`
-                : "",
-              id: idx,
-            }}
-          />
-        ))}
+        {technologies.map((tech, idx) => {
+          const icon = isIcon(tech.default);
+          if (!icon) return null;
+          return (
+            <AnimatedTooltip
+              key={idx}
+              items={{
+                href: icon.source,
+                src: icon.src,
+                name: icon.name,
+                darkSrc: icon.darkModeSrc?.length > 0 ? icon.darkModeSrc : null,
+                id: idx,
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );
