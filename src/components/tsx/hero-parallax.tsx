@@ -5,8 +5,9 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import React from "react";
-import type { Project } from "../../shared/payload-types";
+import React, { useMemo } from "react";
+import type { Media, Project } from "../../shared/payload-types";
+import { getImageBySize } from "../../shared/getImageBySize";
 
 export type Product = Pick<Project, "title" | "liveUrl" | "thumbnail">;
 
@@ -106,6 +107,11 @@ export const ProductCard = ({
   product: Product;
   translate: MotionValue<number>;
 }) => {
+  const thumbnailUrl = useMemo(() => {
+    const thumbnail = product.thumbnail as Media;
+
+    return getImageBySize(thumbnail, "medium");
+  }, [product.thumbnail]);
   return (
     <motion.div
       style={{
@@ -123,7 +129,7 @@ export const ProductCard = ({
       >
         <img
           // @ts-ignore
-          src={product.thumbnail.thumbnailURL}
+          src={thumbnailUrl}
           height="600"
           width="600"
           className="absolute inset-0 h-full w-full object-cover object-left-top"

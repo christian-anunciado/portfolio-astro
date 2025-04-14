@@ -1,6 +1,7 @@
 ---
 import BentoGrid from "../../components/BentoGrid.astro";
 import BentoGridItem from "../../components/BentoGridItem.astro";
+import { getImageBySize } from "../../shared/getImageBySize";
 import type { Media, Project } from "../../shared/payload-types";
 
 interface ProjectBentoProps {
@@ -25,7 +26,7 @@ const { projects } = Astro.props as ProjectBentoProps;
         <BentoGridItem
           title={item.title}
           description={item.subTitle}
-          projectImg={thumbnail.thumbnailURL}
+          projectImg={getImageBySize(thumbnail, "small")}
           className={i === 3 || i === 6 ? "md:col-span-2" : ""}
           href={`/projects/${item.slug}`}
         />

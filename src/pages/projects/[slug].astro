@@ -7,6 +7,7 @@ import ProjectIcons from "../../features/projects/project/ProjectIcons.astro";
 import ProjectLinks from "../../features/projects/project/ProjectLinks.astro";
 import Layout from "../../layouts/Layout.astro";
 import api from "../../shared/api";
+import { getImageBySize } from "../../shared/getImageBySize";
 import type { Media, Project } from "../../shared/payload-types";
 import type { PaginatedResponse } from "../../shared/types";
 
@@ -31,7 +32,7 @@ const thumbnail = project!.thumbnail as Media;
     <div class="flex flex-col gap-10">
       <BackArrow id={"projects"} />
       <DirectionAwareHover
-        imageUrl={thumbnail.thumbnailURL as string}
+        imageUrl={getImageBySize(thumbnail, "medium")}
         className="h-auto md:h-96"
         imageClassName="object-center object-fit w-full h-full scale-100"
         transitionName={`${project!.title.split(" ")[0]}-img`}

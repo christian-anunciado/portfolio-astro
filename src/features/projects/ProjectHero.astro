@@ -9,6 +9,7 @@ interface ProjectHeroProps {
 }
 
 const { projects } = Astro.props as ProjectHeroProps;
+console.log("🚀 ~ projects:", projects);
 ---
 
 <HeroParallax products={projects} client:load>
