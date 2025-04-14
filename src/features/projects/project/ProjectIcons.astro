@@ -1,28 +1,31 @@
 ---
 import { AnimatedTooltip } from "../../../components/tsx/animated-tooltip";
-import type { Icon } from "../projects";
+import type { Icon, Project } from "../../../shared/payload-types";
 
 interface Props {
-  icons: Icon[];
+  technology: Project["technologies"];
 }
 
-const { icons } = Astro.props;
+const { technology } = Astro.props as Props;
 ---
 
 <div class="mb-4 flex items-center gap-4">
   {
-    icons.map((icon, idx) => (
-      <AnimatedTooltip
-        items={{
-          href: icon.href,
-          src: icon.src,
-          name: icon.alt,
-          id: idx,
-          darkSrc: icon.darkSrc,
-        }}
-        imgClassName="h-6 w-6"
-        client:visible
-      />
-    ))
+    technology.map((icon, idx) => {
+      const technology = icon.technology as Icon;
+      return (
+        <AnimatedTooltip
+          items={{
+            href: technology.source,
+            src: technology.src,
+            name: technology.name,
+            id: idx,
+            darkSrc: technology.darkModeSrc,
+          }}
+          imgClassName="h-6 w-6"
+          client:visible
+        />
+      );
+    })
   }
 </div>

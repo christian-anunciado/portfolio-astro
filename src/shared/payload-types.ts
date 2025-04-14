@@ -799,11 +799,12 @@ export interface Project {
   description: string;
   thumbnail: number | Media;
   technologies: {
-    technology?: (number | null) | Media;
+    technology?: (number | null) | Icon;
     id?: string | null;
   }[];
   liveUrl?: string | null;
   githubUrl?: string | null;
+  sortOrder?: number | null;
   slug?: string | null;
   slugLock?: boolean | null;
   updatedAt: string;
@@ -1227,6 +1228,7 @@ export interface ProjectsSelect<T extends boolean = true> {
       };
   liveUrl?: T;
   githubUrl?: T;
+  sortOrder?: T;
   slug?: T;
   slugLock?: T;
   updatedAt?: T;

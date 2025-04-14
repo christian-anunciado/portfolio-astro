@@ -1,7 +1,13 @@
 ---
 import BentoGrid from "../../components/BentoGrid.astro";
 import BentoGridItem from "../../components/BentoGridItem.astro";
-import { projects } from "../../features/projects/projects";
+import type { Media, Project } from "../../shared/payload-types";
+
+interface ProjectBentoProps {
+  projects: Project[];
+}
+
+const { projects } = Astro.props as ProjectBentoProps;
 ---
 
 <BentoGrid className="mx-auto max-w-5xl pb-10">
@@ -13,14 +19,17 @@ import { projects } from "../../features/projects/projects";
     Projects
   </span>
   {
-    projects.map((item, i) => (
-      <BentoGridItem
-        title={item.title}
-        description={item.subTitle}
-        projectImg={item.projectImg}
-        className={i === 3 || i === 6 ? "md:col-span-2" : ""}
-        href={item.href}
-      />
-    ))
+    projects.map((item, i) => {
+      const thumbnail = item.thumbnail as Media;
+      return (
+        <BentoGridItem
+          title={item.title}
+          description={item.subTitle}
+          projectImg={thumbnail.thumbnailURL}
+          className={i === 3 || i === 6 ? "md:col-span-2" : ""}
+          href={`/projects/${item.slug}`}
+        />
+      );
+    })
   }
 </BentoGrid>

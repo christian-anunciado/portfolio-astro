@@ -6,9 +6,9 @@ import {
   useTransform,
 } from "framer-motion";
 import React from "react";
-import { type Project } from "../../features/projects/projects";
+import type { Project } from "../../shared/payload-types";
 
-export type Product = Pick<Project, "title" | "href" | "projectImg">;
+export type Product = Pick<Project, "title" | "liveUrl" | "thumbnail">;
 
 export const HeroParallax = ({
   products,
@@ -118,11 +118,12 @@ export const ProductCard = ({
       className="group/product relative h-96 w-[30rem] flex-shrink-0"
     >
       <a
-        href={product.href + "/?parallax=true"}
+        href={product.liveUrl + "/?parallax=true"}
         className="block group-hover/product:shadow-2xl "
       >
         <img
-          src={product.projectImg}
+          // @ts-ignore
+          src={product.thumbnail.thumbnailURL}
           height="600"
           width="600"
           className="absolute inset-0 h-full w-full object-cover object-left-top"

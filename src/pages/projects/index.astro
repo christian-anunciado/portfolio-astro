@@ -2,9 +2,15 @@
 import ProjectBento from "../../features/projects/ProjectBento.astro";
 import ProjectHero from "../../features/projects/ProjectHero.astro";
 import Layout from "../../layouts/Layout.astro";
+import api from "../../shared/api";
+import type { Project } from "../../shared/payload-types";
+import type { PaginatedResponse } from "../../shared/types";
+
+const res = await api.get("api/projects?sort=sortOrder");
+const data = (await res.json()) as PaginatedResponse<Project>;
 ---
 
 <Layout>
-  <ProjectHero />
-  <ProjectBento />
+  <ProjectHero projects={data.docs} />
+  <ProjectBento projects={data.docs} />
 </Layout>

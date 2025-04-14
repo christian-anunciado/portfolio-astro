@@ -1,31 +1,29 @@
 ---
-import type { GetStaticPaths } from "astro";
 import BackArrow from "../../components/BackArrow.astro";
 import MainContainer from "../../components/MainContainer.astro";
 import { DirectionAwareHover } from "../../components/tsx/direction-aware-hover";
 import ProjectHeader from "../../features/projects/project/ProjectHeader.astro";
 import ProjectIcons from "../../features/projects/project/ProjectIcons.astro";
 import ProjectLinks from "../../features/projects/project/ProjectLinks.astro";
-import { projects } from "../../features/projects/projects";
 import Layout from "../../layouts/Layout.astro";
+import api from "../../shared/api";
+import type { Media, Project } from "../../shared/payload-types";
+import type { PaginatedResponse } from "../../shared/types";
 
-export const getStaticPaths = (() => {
-  const paths = projects.map((project) => ({
-    params: { slug: project.href.replace("/projects/", "") },
+export async function getStaticPaths() {
+  const projectRes = await api.get(`api/projects/`);
+  const projectData = (await projectRes.json()) as PaginatedResponse<Project>;
+  const paths = projectData.docs.map((project) => ({
+    params: { slug: project.slug },
   }));
   return paths;
-}) satisfies GetStaticPaths;
+}
 
 const { slug } = Astro.params;
-
-const project = projects.find(
-  (project) => project.href === `/projects/${slug}`,
-);
-
-// const id =
-//   slug === "dexe" || slug === "greatvet" || slug === "hustlewing"
-//     ? "projects"
-//     : project!.title.split(" ")[0];
+const res = await api.get(`api/projects/?where[slug][equals]=${slug}`);
+const data = (await res.json()) as PaginatedResponse<Project>;
+const project = data.docs[0];
+const thumbnail = project!.thumbnail as Media;
 ---
 
 <Layout>
@@ -33,7 +31,7 @@ const project = projects.find(
     <div class="flex flex-col gap-10">
       <BackArrow id={"projects"} />
       <DirectionAwareHover
-        imageUrl={project!.projectImg}
+        imageUrl={thumbnail.thumbnailURL as string}
         className="h-auto md:h-96"
         imageClassName="object-center object-fit w-full h-full scale-100"
         transitionName={`${project!.title.split(" ")[0]}-img`}
@@ -44,15 +42,15 @@ const project = projects.find(
       </DirectionAwareHover>
       <div class="flex max-w-3xl flex-1 flex-col gap-2">
         <ProjectHeader title={project!.title} subTitle={project!.subTitle} />
-        <ProjectIcons icons={project!.icons} />
+        <ProjectIcons technology={project!.technologies} />
         <p
           class="mb-4 w-full text-xs leading-relaxed tracking-wide text-gray-600 md:w-[90%] md:text-sm dark:text-gray-300"
         >
           {project!.description}
         </p>
         <ProjectLinks
-          liveLink={project?.liveLink}
-          sourceLink={project?.sourceLink}
+          liveLink={project?.liveUrl}
+          sourceLink={project?.githubUrl}
         />
       </div>
     </div>
