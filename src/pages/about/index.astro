@@ -10,8 +10,9 @@ import Technology from "../../features/about/Technology";
 import Layout from "../../layouts/Layout.astro";
 import type { Page } from "../../shared/payload-types";
 import type { PaginatedResponse } from "../../shared/types";
+import api from "../../shared/api";
 
-const res = await fetch(`http://localhost:3000/api/pages?where[slug][equals]=about`)
+const res = await api.get('api/pages?where[slug][equals]=about')
 const data = (await res.json()) as PaginatedResponse<Page>
 const technologies = data.docs[0].layout?.find((item) => item.blockType === 'technology')
 ---

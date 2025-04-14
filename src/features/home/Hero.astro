@@ -8,10 +8,10 @@ import Links from './Links.astro'
 import RichText from '../../components/RichText.astro'
 import type { Page } from '../../shared/payload-types'
 import type { PaginatedResponse } from '../../shared/types'
+import api from '../../shared/api'
 
-const res = await fetch(`http://localhost:3000/api/pages?where[slug][equals]=home`)
+const res = await api.get('api/pages?where[slug][equals]=home')
 const data = (await res.json()) as PaginatedResponse<Page>
-console.log('🚀 ~ data:', data)
 ---
 
 <MainContainer>
