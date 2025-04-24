@@ -12,11 +12,11 @@ export function CardHoverEffectDemo() {
 }
 export const projects = [
   {
-    title: "5+",
+    title: "10+",
     description: "Completed Projects",
   },
   {
-    title: "4+",
+    title: "7",
     description: "Satisfied Clients",
   },
   {
@@ -26,7 +26,7 @@ export const projects = [
   },
 
   {
-    title: "2+",
+    title: "3+",
     description: "Developer Experience",
   },
   {
