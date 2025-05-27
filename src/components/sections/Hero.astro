@@ -1,0 +1,96 @@
+---
+import type { Page } from '../../shared/payload-types'
+import type { PaginatedResponse } from '../../shared/types'
+import api from '../../shared/api'
+import Button from '../ui/Button.astro'
+
+const res = await api.get('api/pages?where[slug][equals]=home')
+const data = (await res.json()) as PaginatedResponse<Page>
+const homeData = data.docs[0]
+---
+
+<section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100 dark:from-gray-900 dark:via-blue-950 dark:to-purple-950 overflow-hidden">
+  <!-- Professional Background Elements -->
+  <div class="absolute inset-0">
+    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/5 via-transparent to-purple-600/5"></div>
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-4xl mx-auto">
+      <!-- Greeting -->
+      <div class="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium mb-6 animate-fade-in-up">
+        <span class="mr-2">👋</span>
+        {homeData.subheader || "Hello, I'm"}
+      </div>
+
+      <!-- Main Heading -->
+      <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in-up" style="animation-delay: 0.1s;">
+        {homeData.header || "Christian Anunciado"}
+      </h1>
+
+            <!-- Description -->
+      <div class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s;">
+        {homeData.description && (
+          <p>
+            Full-Stack Software Engineer passionate about creating exceptional digital experiences.
+            I build modern, scalable applications that solve real-world problems.
+          </p>
+        )}
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style="animation-delay: 0.3s;">
+        {homeData.action_buttons?.map((button, index) => {
+          let href = '#'
+          if (button.link && typeof button.link === 'object') {
+            if ('slug' in button.link && button.link.slug) {
+              href = `/${button.link.slug}`
+            }
+          }
+
+          return (
+            <Button
+              href={href}
+              variant={index === 0 ? 'primary' : 'secondary'}
+              size="lg"
+            >
+              {button.text || 'Learn More'}
+            </Button>
+          )
+        })}
+
+        <Button href="/contact" variant="primary" size="lg">
+          Get In Touch
+        </Button>
+        <Button href="/projects" variant="secondary" size="lg">
+          View My Work
+        </Button>
+      </div>
+
+      <!-- Key Highlights -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 animate-fade-in-up" style="animation-delay: 0.4s;">
+        <div class="text-center p-6 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-white/20">
+          <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">Full-Stack</div>
+          <div class="text-gray-700 dark:text-gray-300">Development</div>
+        </div>
+        <div class="text-center p-6 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-white/20">
+          <div class="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">Modern</div>
+          <div class="text-gray-700 dark:text-gray-300">Technologies</div>
+        </div>
+        <div class="text-center p-6 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-white/20">
+          <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">Client-Focused</div>
+          <div class="text-gray-700 dark:text-gray-300">Solutions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
+</section>
