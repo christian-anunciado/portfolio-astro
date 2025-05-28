@@ -1,0 +1,116 @@
+---
+import type { Project } from '../../shared/payload-types'
+import type { PaginatedResponse } from '../../shared/types'
+import api from '../../shared/api'
+import Button from '../ui/Button.astro'
+
+const res = await api.get('api/projects?limit=6&sort=-createdAt')
+const data = (await res.json()) as PaginatedResponse<Project>
+const projects = data.docs
+---
+
+<section id="projects" class="py-20 bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-4">
+        Portfolio
+      </h2>
+      <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+        Featured Projects
+      </h3>
+      <p class="text-xl text-gray-600 dark:text-gray-300">
+        A showcase of my recent work, demonstrating expertise across different technologies and industries.
+      </p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      {projects.map((project) => (
+        <div class="group bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/50 dark:border-slate-600/50">
+          <!-- Project Image -->
+          <div class="relative overflow-hidden">
+            {project.thumbnail && typeof project.thumbnail === 'object' && (
+              <img
+                src={project.thumbnail.url || '/placeholder-project.jpg'}
+                alt={project.thumbnail.alt || project.title}
+                class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            )}
+            {!project.thumbnail && (
+              <div class="w-full h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                <div class="text-white text-2xl font-bold">{project.title.charAt(0)}</div>
+              </div>
+            )}
+
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+          </div>
+
+          <!-- Project Content -->
+          <div class="p-6">
+            <!-- Title -->
+            <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              {project.title}
+            </h4>
+
+            <!-- Subtitle -->
+            <p class="text-blue-600 dark:text-blue-400 text-sm font-medium mb-3">
+              {project.subTitle}
+            </p>
+
+            <!-- Description -->
+            <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+              {project.description}
+            </p>
+
+            <!-- Technologies -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              {project.technologies?.slice(0, 3).map((tech) => (
+                              <span class="px-2 py-1 bg-gray-100 dark:bg-slate-600 text-gray-700 dark:text-slate-200 rounded text-xs">
+                {typeof tech.technology === 'object' && tech.technology?.name || 'Tech'}
+              </span>
+            ))}
+            {project.technologies && project.technologies.length > 3 && (
+              <span class="px-2 py-1 bg-gray-100 dark:bg-slate-600 text-gray-700 dark:text-slate-200 rounded text-xs">
+                +{project.technologies.length - 3} more
+              </span>
+            )}
+            </div>
+
+            <!-- Links -->
+            <div class="flex gap-3">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 text-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                >
+                  Live Demo
+                </a>
+              )}
+              {project.githubUrl && (
+                                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 text-center px-4 py-2 border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-slate-300 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-600 transition-colors text-sm font-medium"
+                >
+                  Code
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- View All Projects CTA -->
+    <div class="text-center">
+      <Button href="/projects" variant="outline" size="lg">
+        View All Projects
+      </Button>
+    </div>
+  </div>
+</section>

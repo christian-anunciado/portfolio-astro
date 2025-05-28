@@ -1,0 +1,54 @@
+---
+import type { Header as HeaderType } from '../../shared/payload-types'
+import api from '../../shared/api'
+import ThemeToggle from '../ui/ThemeToggle.astro'
+import MobileMenu from '../ui/MobileMenu.astro'
+
+const res = await api.get('api/globals/header')
+const headerData = (await res.json()) as HeaderType
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-gray-200/80 bg-white/80 backdrop-blur-md dark:border-slate-700/80 dark:bg-slate-900/80">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          Christian Anunciado
+        </a>
+      </div>
+
+            <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#about" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
+          About
+        </a>
+        <a href="#services" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
+          Services
+        </a>
+        <a href="#projects" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
+          Projects
+        </a>
+        <a href="#testimonials" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
+          Testimonials
+        </a>
+
+        <!-- CTA Button -->
+        <a
+          href="#contact"
+          class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 border border-transparent rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl"
+        >
+          Get In Touch
+        </a>
+
+        <ThemeToggle />
+      </nav>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center space-x-4">
+        <ThemeToggle />
+        <MobileMenu />
+      </div>
+    </div>
+  </div>
+</header>
