@@ -3,18 +3,19 @@ import type { Page } from '../../shared/payload-types'
 import type { PaginatedResponse } from '../../shared/types'
 import api from '../../shared/api'
 import Button from '../ui/Button.astro'
+import RichText from '../RichText.astro'
 
 const res = await api.get('api/pages?where[slug][equals]=home')
 const data = (await res.json()) as PaginatedResponse<Page>
 const homeData = data.docs[0]
 ---
 
-<section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100 dark:from-gray-900 dark:via-blue-950 dark:to-purple-950 overflow-hidden">
+<section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden">
   <!-- Professional Background Elements -->
   <div class="absolute inset-0">
-    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/5 via-transparent to-purple-600/5"></div>
-    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/5 via-transparent to-purple-600/5 dark:from-blue-400/10 dark:via-transparent dark:to-purple-400/10"></div>
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/10 to-purple-400/10 dark:from-blue-500/20 dark:to-purple-500/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 dark:from-purple-500/20 dark:to-blue-500/20 rounded-full blur-3xl"></div>
   </div>
 
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -32,12 +33,9 @@ const homeData = data.docs[0]
 
             <!-- Description -->
       <div class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s;">
-        {homeData.description && (
-          <p>
-            Full-Stack Software Engineer passionate about creating exceptional digital experiences.
-            I build modern, scalable applications that solve real-world problems.
-          </p>
-        )}
+        <p>
+          I build modern, scalable apps and AI solutions shaped by real-world needs and user feedback.
+        </p>
       </div>
 
       <!-- CTA Buttons -->
@@ -71,17 +69,17 @@ const homeData = data.docs[0]
 
       <!-- Key Highlights -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 animate-fade-in-up" style="animation-delay: 0.4s;">
-        <div class="text-center p-6 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-white/20">
+        <div class="text-center p-6 bg-white/10 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-white/20 dark:border-slate-700/50">
           <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">Full-Stack</div>
-          <div class="text-gray-700 dark:text-gray-300">Development</div>
+          <div class="text-gray-700 dark:text-slate-300">Development</div>
         </div>
-        <div class="text-center p-6 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-white/20">
-          <div class="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">Modern</div>
-          <div class="text-gray-700 dark:text-gray-300">Technologies</div>
+        <div class="text-center p-6 bg-white/10 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-white/20 dark:border-slate-700/50">
+          <div class="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">Modern & AI-driven</div>
+          <div class="text-gray-700 dark:text-slate-300">Applications</div>
         </div>
-        <div class="text-center p-6 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-white/20">
+        <div class="text-center p-6 bg-white/10 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-white/20 dark:border-slate-700/50">
           <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">Client-Focused</div>
-          <div class="text-gray-700 dark:text-gray-300">Solutions</div>
+          <div class="text-gray-700 dark:text-slate-300">Solutions</div>
         </div>
       </div>
     </div>

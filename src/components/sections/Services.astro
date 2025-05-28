@@ -9,6 +9,12 @@ const services = [
     features: ['Responsive Design', 'Performance Optimization', 'SEO Friendly', 'Cross-browser Compatible']
   },
   {
+    icon: '🤖',
+    title: 'AI/ML Development',
+    description: 'Intelligent applications powered by machine learning and AI technologies. From chatbots to predictive analytics.',
+    features: ['OpenAI Integration', 'Custom ML Models', 'Natural Language Processing', 'Computer Vision']
+  },
+  {
     icon: '📱',
     title: 'Mobile Development',
     description: 'Native and cross-platform mobile apps that deliver exceptional user experiences on iOS and Android.',
@@ -41,7 +47,7 @@ const services = [
 ]
 ---
 
-<section id="services" class="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 dark:from-purple-950 dark:via-pink-950 dark:to-rose-950">
+<section id="services" class="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Header -->
     <div class="text-center max-w-3xl mx-auto mb-16">
@@ -52,14 +58,14 @@ const services = [
         What I Can Do For You
       </h3>
       <p class="text-xl text-gray-600 dark:text-gray-300">
-        From concept to deployment, I provide end-to-end solutions that help your business grow and succeed in the digital world.
+        From concept to deployment, I provide end-to-end solutions including AI-powered applications that help your business grow and succeed in the digital world.
       </p>
     </div>
 
     <!-- Services Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
       {services.map((service) => (
-        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/50 dark:border-gray-700/50">
+        <div class="bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/50 dark:border-slate-600/50">
           <!-- Icon -->
           <div class="text-4xl mb-4">{service.icon}</div>
 
