@@ -21,19 +21,22 @@ const headerData = (await res.json()) as HeaderType
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center space-x-6 lg:space-x-8">
-        <a href="#about" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
+        <a href="/" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
+          Home
+        </a>
+        <a href="/#about" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
           About
         </a>
-        <a href="#services" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
+        <a href="/#services" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
           Services
         </a>
-        <a href="#projects" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
+        <a href="/#projects" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
           Projects
         </a>
 
         <!-- CTA Button -->
         <a
-          href="#contact"
+          href="/#contact"
           class="inline-flex items-center px-3 lg:px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 border border-transparent rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl"
         >
           <span class="hidden lg:inline">Get In Touch</span>
