@@ -13,13 +13,14 @@ const headerData = (await res.json()) as HeaderType
     <div class="flex h-16 items-center justify-between">
       <!-- Logo -->
       <div class="flex items-center">
-        <a href="/" class="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-          Christian Anunciado
+        <a href="/" class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <span class="hidden sm:inline">Christian Anunciado</span>
+          <span class="sm:hidden">CA</span>
         </a>
       </div>
 
-            <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-8">
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-6 lg:space-x-8">
         <a href="#about" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
           About
         </a>
@@ -29,23 +30,21 @@ const headerData = (await res.json()) as HeaderType
         <a href="#projects" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
           Projects
         </a>
-        <a href="#testimonials" class="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors">
-          Testimonials
-        </a>
 
         <!-- CTA Button -->
         <a
           href="#contact"
-          class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 border border-transparent rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl"
+          class="inline-flex items-center px-3 lg:px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 border border-transparent rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl"
         >
-          Get In Touch
+          <span class="hidden lg:inline">Get In Touch</span>
+          <span class="lg:hidden">Contact</span>
         </a>
 
         <ThemeToggle />
       </nav>
 
       <!-- Mobile menu button -->
-      <div class="md:hidden flex items-center space-x-4">
+      <div class="md:hidden flex items-center space-x-2 sm:space-x-4">
         <ThemeToggle />
         <MobileMenu />
       </div>

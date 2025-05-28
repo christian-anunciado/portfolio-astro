@@ -2,140 +2,124 @@
 // Mobile menu component
 ---
 
-<div class="relative">
+<div class="md:hidden">
   <!-- Mobile menu button -->
   <button
     id="mobile-menu-button"
     type="button"
     class="inline-flex items-center justify-center w-10 h-10 text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-slate-400 dark:hover:bg-slate-700 dark:focus:ring-slate-600 transition-colors"
     aria-label="Toggle mobile menu"
-    aria-expanded="false"
   >
-    <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
     </svg>
-    <svg id="close-icon" class="hidden w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-    </svg>
   </button>
-
-  <!-- Mobile menu overlay -->
-  <div
-    id="mobile-menu-overlay"
-    class="fixed inset-0 z-40 bg-black bg-opacity-50 hidden"
-  ></div>
 
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="fixed top-0 right-0 z-50 w-80 h-full bg-white dark:bg-slate-900 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out"
+    class="fixed inset-0 z-50 hidden bg-black/50 opacity-0 transition-opacity duration-300"
   >
-    <div class="flex flex-col h-full">
-      <!-- Menu header -->
-      <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-700">
-        <span class="text-lg font-semibold text-gray-900 dark:text-white">Menu</span>
-        <button
-          id="mobile-menu-close"
-          type="button"
-          class="inline-flex items-center justify-center w-8 h-8 text-gray-500 rounded-lg hover:bg-gray-100 dark:text-slate-400 dark:hover:bg-slate-700 transition-colors"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
+    <!-- Menu panel -->
+    <div class="fixed inset-y-0 right-0 w-80 max-w-[90vw] h-svh bg-white dark:bg-slate-900 shadow-2xl">
+      <div class="flex h-full flex-col bg-white dark:bg-slate-900">
+        <!-- Header -->
+        <div class="flex-shrink-0 flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+          <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Menu</h2>
+          <button
+            id="mobile-menu-close"
+            type="button"
+            class="rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 dark:hover:bg-slate-800 dark:hover:text-slate-300 transition-colors"
+          >
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 min-h-0 px-6 py-6 overflow-y-auto bg-white dark:bg-slate-900">
+          <div class="space-y-2">
+            <a href="#about" class="mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">
+              About
+            </a>
+            <a href="#services" class="mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">
+              Services
+            </a>
+            <a href="#projects" class="mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">
+              Projects
+            </a>
+            <a href="#testimonials" class="mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">
+              Testimonials
+            </a>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="mt-8 pb-4">
+            <a href="#contact" class="mobile-nav-link block w-full rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-3 text-center text-base font-medium text-white hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg">
+              Get In Touch
+            </a>
+          </div>
+        </nav>
       </div>
-
-            <!-- Menu items -->
-      <nav class="flex-1 p-4 space-y-2">
-        <a
-          href="#about"
-          class="block px-4 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 dark:text-slate-300 dark:hover:text-blue-400 dark:hover:bg-slate-800 rounded-lg transition-colors mobile-menu-link"
-        >
-          About
-        </a>
-        <a
-          href="#services"
-          class="block px-4 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 dark:text-slate-300 dark:hover:text-blue-400 dark:hover:bg-slate-800 rounded-lg transition-colors mobile-menu-link"
-        >
-          Services
-        </a>
-        <a
-          href="#projects"
-          class="block px-4 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 dark:text-slate-300 dark:hover:text-blue-400 dark:hover:bg-slate-800 rounded-lg transition-colors mobile-menu-link"
-        >
-          Projects
-        </a>
-        <a
-          href="#testimonials"
-          class="block px-4 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 dark:text-slate-300 dark:hover:text-blue-400 dark:hover:bg-slate-800 rounded-lg transition-colors mobile-menu-link"
-        >
-          Testimonials
-        </a>
-
-        <!-- CTA Button -->
-        <a
-          href="#contact"
-          class="block w-full mt-6 px-4 py-3 text-center text-base font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 border border-transparent rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 mobile-menu-link"
-        >
-          Get In Touch
-        </a>
-      </nav>
     </div>
   </div>
 </div>
 
 <script>
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-  const mobileMenuClose = document.getElementById('mobile-menu-close');
-  const menuIcon = document.getElementById('menu-icon');
-  const closeIcon = document.getElementById('close-icon');
-  const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+  function initMobileMenu() {
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const closeButton = document.getElementById('mobile-menu-close');
+    const navLinks = document.querySelectorAll('.mobile-nav-link');
 
-  function openMobileMenu() {
-    mobileMenu?.classList.remove('translate-x-full');
-    mobileMenuOverlay?.classList.remove('hidden');
-    menuIcon?.classList.add('hidden');
-    closeIcon?.classList.remove('hidden');
-    mobileMenuButton?.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
+    if (!button || !menu || !closeButton) return;
+
+    function openMenu() {
+      menu.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      // Trigger fade in
+      requestAnimationFrame(() => {
+        menu.classList.remove('opacity-0');
+        menu.classList.add('opacity-100');
+      });
+    }
+
+    function closeMenu() {
+      menu.classList.remove('opacity-100');
+      menu.classList.add('opacity-0');
+
+      // Hide after fade out
+      setTimeout(() => {
+        menu.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+
+    button.addEventListener('click', openMenu);
+    closeButton.addEventListener('click', closeMenu);
+
+    // Close on backdrop click
+    menu.addEventListener('click', (e) => {
+      if (e.target === menu) closeMenu();
+    });
+
+    // Close on nav link click
+    navLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
   }
 
-  function closeMobileMenu() {
-    mobileMenu?.classList.add('translate-x-full');
-    mobileMenuOverlay?.classList.add('hidden');
-    menuIcon?.classList.remove('hidden');
-    closeIcon?.classList.add('hidden');
-    mobileMenuButton?.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
   }
-
-  mobileMenuButton?.addEventListener('click', () => {
-    if (mobileMenu?.classList.contains('translate-x-full')) {
-      openMobileMenu();
-    } else {
-      closeMobileMenu();
-    }
-  });
-
-  mobileMenuClose?.addEventListener('click', closeMobileMenu);
-  mobileMenuOverlay?.addEventListener('click', closeMobileMenu);
-
-  // Close menu when clicking on links
-  mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-  });
-
-  // Close menu on escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeMobileMenu();
-    }
-  });
-
-  // Reinitialize on page navigation
-  document.addEventListener('astro:page-load', () => {
-    closeMobileMenu();
-  });
 </script>
