@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
+    experience: Experience;
     projects: Project;
     icons: Icon;
     media: Media;
@@ -86,6 +87,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
+    experience: ExperienceSelect<false> | ExperienceSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     icons: IconsSelect<false> | IconsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -752,6 +754,36 @@ export interface Icon {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experience".
+ */
+export interface Experience {
+  id: number;
+  position: string;
+  company: string;
+  websiteUrl?: string | null;
+  startDate: string;
+  endDate?: string | null;
+  isCurrent?: boolean | null;
+  description: string;
+  type?: ('full-time' | 'part-time' | 'contract') | null;
+  location: string;
+  achievements: {
+    achievement: string;
+    id?: string | null;
+  }[];
+  technologies?:
+    | {
+        technology?: (number | null) | Icon;
+        id?: string | null;
+      }[]
+    | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
@@ -948,6 +980,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'experience';
+        value: number | Experience;
       } | null)
     | ({
         relationTo: 'projects';
@@ -1173,6 +1209,37 @@ export interface TechnologyBlockSelect<T extends boolean = true> {
       };
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experience_select".
+ */
+export interface ExperienceSelect<T extends boolean = true> {
+  position?: T;
+  company?: T;
+  websiteUrl?: T;
+  startDate?: T;
+  endDate?: T;
+  isCurrent?: T;
+  description?: T;
+  type?: T;
+  location?: T;
+  achievements?:
+    | T
+    | {
+        achievement?: T;
+        id?: T;
+      };
+  technologies?:
+    | T
+    | {
+        technology?: T;
+        id?: T;
+      };
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
