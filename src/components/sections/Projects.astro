@@ -3,8 +3,11 @@ import type { Project } from '../../shared/payload-types'
 import type { PaginatedResponse } from '../../shared/types'
 import api from '../../shared/api'
 import Button from '../ui/Button.astro'
+import { getImageBySize } from '../../shared/getImageBySize'
+import type { Media } from '../../shared/payload-types'
 
-const res = await api.get('api/projects?limit=6&sort=-createdAt')
+// featured projects
+const res = await api.get('api/projects?limit=6&sort=-createdAt&where[featured][equals]=true')
 const data = (await res.json()) as PaginatedResponse<Project>
 const projects = data.docs
 ---
@@ -30,11 +33,11 @@ const projects = data.docs
         <div class="group bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/50 dark:border-slate-600/50">
           <!-- Project Image -->
           <div class="relative overflow-hidden">
-            {project.thumbnail && typeof project.thumbnail === 'object' && (
+            {project.thumbnail && (
               <img
-                src={project.thumbnail.url || '/placeholder-project.jpg'}
-                alt={project.thumbnail.alt || project.title}
-                class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                src={getImageBySize(project.thumbnail as Media, "small")}
+                alt={project.title}
+                class="w-full h-48 object-cover object-top group-hover:scale-105 transition-transform duration-300"
               />
             )}
             {!project.thumbnail && (
