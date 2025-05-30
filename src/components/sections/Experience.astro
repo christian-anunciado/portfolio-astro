@@ -89,6 +89,11 @@ const getJobTypeBadge = (type?: string | null) => {
                         <h4 class="text-xl font-bold text-gray-900 dark:text-white">
                           {experience.position}
                         </h4>
+                        {experience.isCurrent && (
+                          <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                            Current
+                          </span>
+                        )}
                         {getJobTypeBadge(experience.type) && (
                           <span class={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getJobTypeBadge(experience.type)?.className}`}>
                             {getJobTypeBadge(experience.type)?.label}
@@ -118,18 +123,29 @@ const getJobTypeBadge = (type?: string | null) => {
                     </div>
 
                     <!-- Date and duration -->
-                    <div class="text-right">
-                      <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {formatDate(experience.startDate)} - {experience.isCurrent ? 'Present' : experience.endDate ? formatDate(experience.endDate) : 'Present'}
+                    <div class="text-right mt-2 sm:mt-0">
+                      <!-- Mobile: single line layout -->
+                      <div class="block sm:hidden">
+                        <div class="text-sm text-gray-600 dark:text-gray-300 flex items-center justify-end gap-2 flex-wrap">
+                          <span class="font-medium">
+                            {formatDate(experience.startDate)} - {experience.isCurrent ? 'Present' : experience.endDate ? formatDate(experience.endDate) : 'Present'}
+                          </span>
+                          <span class="text-gray-400">•</span>
+                          <span class="text-xs">
+                            {calculateDuration(experience.startDate, experience.endDate, experience.isCurrent)}
+                          </span>
+                        </div>
                       </div>
-                      <div class="text-xs text-gray-500 dark:text-gray-400">
-                        {calculateDuration(experience.startDate, experience.endDate, experience.isCurrent)}
+
+                      <!-- Desktop: multi-line layout -->
+                      <div class="hidden sm:block">
+                        <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                          {formatDate(experience.startDate)} - {experience.isCurrent ? 'Present' : experience.endDate ? formatDate(experience.endDate) : 'Present'}
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400">
+                          {calculateDuration(experience.startDate, experience.endDate, experience.isCurrent)}
+                        </div>
                       </div>
-                      {experience.isCurrent && (
-                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 mt-1">
-                          Current
-                        </span>
-                      )}
                     </div>
                   </div>
 

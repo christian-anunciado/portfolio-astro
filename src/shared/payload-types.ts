@@ -802,7 +802,7 @@ export interface Experience {
   startDate: string;
   endDate?: string | null;
   isCurrent?: boolean | null;
-  description: string;
+  description?: string | null;
   type?: ("full-time" | "part-time" | "contract") | null;
   location: string;
   achievements: {
