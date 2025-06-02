@@ -25,7 +25,13 @@ import Button from '../ui/Button.astro'
           Send me a message
         </h4>
 
-        <form class="space-y-6">
+        <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+          <!-- Web3Forms Access Key -->
+          <input type="hidden" name="access_key" value="c6c37b81-84e5-404d-9332-ed08fefb0e66">
+
+          <!-- Honeypot spam protection -->
+          <input type="checkbox" name="botcheck" id="" style="display: none;">
+
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
               <label for="firstName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -92,9 +98,15 @@ import Button from '../ui/Button.astro'
             ></textarea>
           </div>
 
-          <Button variant="primary" size="lg" class="w-full">
+          <button
+            type="submit"
+            class="w-full inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
             Send Message
-          </Button>
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+            </svg>
+          </button>
         </form>
       </div>
 
