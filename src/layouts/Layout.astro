@@ -64,11 +64,7 @@ const MEASUREMENT_ID = import.meta.env.GA_MEASUREMENT_ID;
       function setDarkMode(document) {
         const parent = document.documentElement;
         if (localStorage.theme === undefined) {
-          let theme = window.matchMedia("(prefers-color-scheme: dark)")
-            ? "dark"
-            : "light";
-
-          localStorage.setItem("theme", theme);
+          localStorage.setItem("theme", "dark");
         }
 
         if (localStorage.theme === "dark") {
