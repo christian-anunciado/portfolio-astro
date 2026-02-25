@@ -109,9 +109,5 @@
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMobileMenu);
-  } else {
-    initMobileMenu();
-  }
+  document.addEventListener('astro:page-load', initMobileMenu);
 </script>
