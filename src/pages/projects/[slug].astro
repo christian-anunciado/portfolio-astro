@@ -36,6 +36,7 @@ const thumbnail = project!.thumbnail as Media;
       <BackArrow id={"projects"} />
       <DirectionAwareHover
         imageUrl={getImageBySize(thumbnail, "medium")}
+        alt={`${project!.title} project screenshot`}
         className="h-auto md:h-96"
         imageClassName="object-center object-fit w-full h-full scale-100"
         transitionName={`${project!.title.split(" ")[0]}-img`}

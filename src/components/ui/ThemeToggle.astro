@@ -10,10 +10,10 @@ const { id = "theme-toggle" } = Astro.props;
   id={id}
   type="button"
   class="theme-toggle inline-flex items-center justify-center px-2 py-1 text-xs font-mono text-text-secondary hover:text-accent border border-border hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent transition-colors uppercase tracking-wider"
-  aria-label="Toggle theme"
+  title="Toggle theme"
 >
-  <span class="theme-dark-label hidden">[LIGHT]</span>
-  <span class="theme-light-label hidden">[DARK]</span>
+  <span class="theme-dark-label hidden" aria-label="Switch to light theme">[LIGHT]</span>
+  <span class="theme-light-label hidden" aria-label="Switch to dark theme">[DARK]</span>
 </button>
 
 <script>

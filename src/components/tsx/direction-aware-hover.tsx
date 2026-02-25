@@ -9,6 +9,7 @@ export const DirectionAwareHover = ({
   imageClassName,
   className,
   transitionName,
+  alt,
 }: {
   imageUrl: string;
   children: React.ReactNode | string;
@@ -16,6 +17,7 @@ export const DirectionAwareHover = ({
   imageClassName?: string;
   className?: string;
   transitionName?: string;
+  alt?: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -88,7 +90,7 @@ export const DirectionAwareHover = ({
             }}
           >
             <img
-              alt="image"
+              alt={alt || ""}
               className={cn(
                 "h-full w-full object-scale-down object-center",
                 imageClassName,

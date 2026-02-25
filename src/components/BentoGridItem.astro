@@ -22,6 +22,7 @@ const { className, title, description, projectImg, icon, href } = Astro.props;
 >
   <DirectionAwareHover
     imageUrl={projectImg}
+    alt={`${title} project screenshot`}
     transitionName={`${title.split(" ")[0]}-img`}
     client:visible
   >

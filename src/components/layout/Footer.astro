@@ -15,7 +15,7 @@ const footerData = (await res.json()) as FooterType
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12 mb-8 sm:mb-12">
       <div>
-        <h3 class="text-sm sm:text-base font-bold text-accent mb-3">&gt; christian_anunciado</h3>
+        <p class="text-sm sm:text-base font-bold text-accent mb-3">&gt; christian_anunciado</p>
         <p class="text-text-secondary text-[0.65rem] sm:text-xs leading-relaxed mb-4">
           Full-stack & AI engineer building modern, scalable applications. Focused on clean code and real-world impact.
         </p>
@@ -30,22 +30,22 @@ const footerData = (await res.json()) as FooterType
       </div>
 
       <div>
-        <h4 class="text-[0.65rem] sm:text-xs font-medium tracking-widest text-text-tertiary mb-3 sm:mb-4">
+        <p class="text-[0.65rem] sm:text-xs font-medium tracking-widest text-text-tertiary mb-3 sm:mb-4">
           <span class="text-accent">//</span> navigation
-        </h4>
+        </p>
         <nav class="space-y-2 sm:space-y-3">
           <a href="/" class="block text-[0.65rem] sm:text-xs text-text-secondary hover:text-accent transition-colors">&gt; home</a>
-          <a href="/#about" class="block text-[0.65rem] sm:text-xs text-text-secondary hover:text-accent transition-colors">&gt; about</a>
+          <a href="/about" class="block text-[0.65rem] sm:text-xs text-text-secondary hover:text-accent transition-colors">&gt; about</a>
           <a href="/#experience" class="block text-[0.65rem] sm:text-xs text-text-secondary hover:text-accent transition-colors">&gt; experience</a>
-          <a href="/#projects" class="block text-[0.65rem] sm:text-xs text-text-secondary hover:text-accent transition-colors">&gt; projects</a>
+          <a href="/projects" class="block text-[0.65rem] sm:text-xs text-text-secondary hover:text-accent transition-colors">&gt; projects</a>
           <a href="/#contact" class="block text-[0.65rem] sm:text-xs text-text-secondary hover:text-accent transition-colors">&gt; contact</a>
         </nav>
       </div>
 
       <div>
-        <h4 class="text-[0.65rem] sm:text-xs font-medium tracking-widest text-text-tertiary mb-3 sm:mb-4">
+        <p class="text-[0.65rem] sm:text-xs font-medium tracking-widest text-text-tertiary mb-3 sm:mb-4">
           <span class="text-accent">//</span> connect
-        </h4>
+        </p>
         <nav class="space-y-2 sm:space-y-3">
           <a
             href={CONTACT_LINKS.github}
