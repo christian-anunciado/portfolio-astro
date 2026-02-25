@@ -13,11 +13,11 @@ const { projects } = Astro.props as ProjectBentoProps;
 
 <BentoGrid className="mx-auto max-w-5xl pb-10">
   <span
-    class="mb-5 scroll-my-32 self-start text-3xl font-bold tracking-wide text-sky-600 md:col-span-3 md:scroll-my-16 md:text-4xl dark:text-sky-500"
+    class="mb-5 scroll-my-32 self-start text-3xl font-bold tracking-wide font-mono text-text-primary md:col-span-3 md:scroll-my-16 md:text-4xl"
     id="projects"
     transition:name="project-header"
   >
-    Projects
+    <span class="text-accent">&gt;</span> Projects
   </span>
   {
     projects.map((item, i) => {

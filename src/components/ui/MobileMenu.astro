@@ -1,63 +1,60 @@
 ---
-// Mobile menu component
 ---
 
 <div class="md:hidden">
-  <!-- Mobile menu button -->
   <button
     id="mobile-menu-button"
     type="button"
-    class="inline-flex items-center justify-center w-10 h-10 text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-slate-400 dark:hover:bg-slate-700 dark:focus:ring-slate-600 transition-colors"
+    class="inline-flex items-center justify-center w-10 h-10 text-text-secondary hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent transition-colors font-mono text-lg"
     aria-label="Toggle mobile menu"
   >
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-    </svg>
+    [=]
   </button>
 
-  <!-- Mobile menu -->
   <div
     id="mobile-menu"
     class="fixed inset-0 z-50 hidden bg-black/50 opacity-0 transition-opacity duration-300"
   >
-    <!-- Menu panel -->
-    <div class="fixed inset-y-0 right-0 w-80 max-w-[90vw] h-svh bg-white dark:bg-slate-900 shadow-2xl">
-      <div class="flex h-full flex-col bg-white dark:bg-slate-900">
-        <!-- Header -->
-        <div class="flex-shrink-0 flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900">
-          <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Menu</h2>
+    <div class="fixed inset-y-0 right-0 w-80 max-w-[90vw] h-svh bg-bg border-l border-border">
+      <div class="flex h-full flex-col bg-bg">
+        <div class="flex-shrink-0 flex items-center justify-between px-6 py-4 border-b border-border">
+          <h2 class="text-sm font-bold text-accent font-mono">&gt; menu</h2>
           <button
             id="mobile-menu-close"
             type="button"
-            class="rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 dark:hover:bg-slate-800 dark:hover:text-slate-300 transition-colors"
+            class="p-2 text-text-tertiary hover:text-accent transition-colors font-mono"
           >
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            [x]
           </button>
         </div>
 
-        <!-- Navigation -->
-        <nav class="flex-1 min-h-0 px-6 py-6 overflow-y-auto bg-white dark:bg-slate-900">
-          <div class="space-y-2">
-            <a href="#about" class="mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">
-              About
+        <nav class="flex-1 min-h-0 px-6 py-6 overflow-y-auto">
+          <div class="space-y-1">
+            <a href="/#about" class="mobile-nav-link block px-4 py-3 text-sm font-medium text-text-secondary hover:text-accent hover:bg-bg-subtle transition-colors border-l-2 border-transparent hover:border-accent">
+              &gt; about
             </a>
-            <a href="#experience" class="mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">
-              Experience
+            <a href="/#experience" class="mobile-nav-link block px-4 py-3 text-sm font-medium text-text-secondary hover:text-accent hover:bg-bg-subtle transition-colors border-l-2 border-transparent hover:border-accent">
+              &gt; experience
             </a>
-            <a href="#services" class="mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">
-              Services
+            <a href="/#services" class="mobile-nav-link block px-4 py-3 text-sm font-medium text-text-secondary hover:text-accent hover:bg-bg-subtle transition-colors border-l-2 border-transparent hover:border-accent">
+              &gt; services
             </a>
-            <a href="#projects" class="mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors">
-              Projects
+            <a href="/#projects" class="mobile-nav-link block px-4 py-3 text-sm font-medium text-text-secondary hover:text-accent hover:bg-bg-subtle transition-colors border-l-2 border-transparent hover:border-accent">
+              &gt; projects
+            </a>
+            <a
+              href="https://drive.google.com/file/d/1lCZh12ib0HNynoFtNoNC-SDb2MOI8B1P/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mobile-nav-link block px-4 py-3 text-sm font-medium text-text-secondary hover:text-accent hover:bg-bg-subtle transition-colors border-l-2 border-transparent hover:border-accent"
+            >
+              &gt; resume
             </a>
           </div>
 
-          <!-- CTA Button -->
           <div class="mt-8 pb-4">
-            <a href="#contact" class="mobile-nav-link block w-full rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-3 text-center text-base font-medium text-white hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg">
-              Get In Touch
+            <a href="/#contact" class="mobile-nav-link block w-full border border-accent px-4 py-3 text-center text-sm font-medium text-accent hover:bg-accent hover:text-bg transition-colors uppercase tracking-wider">
+              [GET_IN_TOUCH]
             </a>
           </div>
         </nav>
@@ -79,7 +76,6 @@
       menu.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
 
-      // Trigger fade in
       requestAnimationFrame(() => {
         menu.classList.remove('opacity-0');
         menu.classList.add('opacity-100');
@@ -90,7 +86,6 @@
       menu.classList.remove('opacity-100');
       menu.classList.add('opacity-0');
 
-      // Hide after fade out
       setTimeout(() => {
         menu.classList.add('hidden');
         document.body.style.overflow = '';
@@ -100,23 +95,19 @@
     button.addEventListener('click', openMenu);
     closeButton.addEventListener('click', closeMenu);
 
-    // Close on backdrop click
     menu.addEventListener('click', (e) => {
       if (e.target === menu) closeMenu();
     });
 
-    // Close on nav link click
     navLinks.forEach(link => {
       link.addEventListener('click', closeMenu);
     });
 
-    // Close on escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeMenu();
     });
   }
 
-  // Initialize when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMobileMenu);
   } else {

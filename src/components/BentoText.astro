@@ -10,13 +10,13 @@ const { description, title } = Astro.props;
 ---
 
 <HeaderText
-  className="mb-3 text-base text-neutral-200 md:text-base"
+  className="mb-3 text-base text-text-primary md:text-base"
   transitionName={`${title.split(" ")[0]}-titleText`}
 >
   {title}
 </HeaderText>
 <div
-  class="font-sans text-xs font-normal text-neutral-300"
+  class="font-mono text-xs font-normal text-text-secondary"
   transition:name={`${title.split(" ")[0]}-descText`}
 >
   {description}

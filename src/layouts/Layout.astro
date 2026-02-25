@@ -1,5 +1,9 @@
 ---
-import "@fontsource/geist-sans";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
+import "@fontsource/jetbrains-mono/700.css";
+import "@fontsource/press-start-2p/400.css";
+import "../styles/global.css";
 import { SEO } from "astro-seo";
 import { ViewTransitions } from "astro:transitions";
 import OgImage from "../../public/og_image.jpg";
@@ -84,20 +88,6 @@ const MEASUREMENT_ID = import.meta.env.GA_MEASUREMENT_ID;
     </script>
 
     <style is:global>
-      *,
-      body {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        transition-property: background-color, color, border-color, text-decoration-color, fill, stroke;
-      }
-
-      .icon {
-        transition: none !important;
-        -moz-transition: none !important;
-        -webkit-transition: none !important;
-        -o-transition: none !important;
-      }
-
-      /* Custom scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -108,7 +98,6 @@ const MEASUREMENT_ID = import.meta.env.GA_MEASUREMENT_ID;
 
       ::-webkit-scrollbar-thumb {
         background: rgba(156, 163, 175, 0.5);
-        border-radius: 4px;
       }
 
       ::-webkit-scrollbar-thumb:hover {
@@ -122,29 +111,13 @@ const MEASUREMENT_ID = import.meta.env.GA_MEASUREMENT_ID;
       .dark ::-webkit-scrollbar-thumb:hover {
         background: rgba(75, 85, 99, 0.7);
       }
-
-      /* Smooth animations */
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .animate-fade-in-up {
-        animation: fadeInUp 0.6s ease-out;
-      }
     </style>
   </head>
 
-  <body class="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 font-sans antialiased">
+  <body class="scanline min-h-screen bg-bg text-text-primary font-mono antialiased">
     <Header />
 
-    <main class="relative">
+    <main class="relative z-10">
       <slot />
     </main>
 

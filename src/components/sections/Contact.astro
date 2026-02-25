@@ -1,169 +1,147 @@
 ---
 import { CONTACT_LINKS } from '../../shared/constants'
-import Button from '../ui/Button.astro'
 ---
 
-<section id="contact" class="py-20 bg-gradient-to-br from-slate-50 via-gray-50 to-zinc-50 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800">
-  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Header -->
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-4">
-        Contact
+<section id="contact" class="relative py-16 sm:py-24 lg:py-32 bg-bg-subtle overflow-hidden">
+  <div class="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-10 sm:mb-16">
+      <p class="text-xs font-medium tracking-widest text-text-tertiary mb-3">
+        <span class="text-accent">//</span> contact
+      </p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary mb-4 sm:mb-6">
+        <span class="text-accent">&gt;</span> Let's Work Together
       </h2>
-      <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-        Let's Work Together
-      </h3>
-      <p class="text-xl text-gray-600 dark:text-gray-300">
+      <p class="text-xs sm:text-sm text-text-secondary max-w-3xl">
         Ready to bring your ideas to life? I'd love to hear about your project and discuss how we can work together.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-      <!-- Contact Form -->
-      <div class="bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm rounded-2xl p-8 border border-white/50 dark:border-slate-600/50 shadow-lg">
-        <h4 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-          Send me a message
-        </h4>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+      <div class="bg-surface border border-border p-5 sm:p-8">
+        <h3 class="text-lg sm:text-xl font-bold text-text-primary mb-4 sm:mb-6">
+          <span class="text-accent">&gt;</span> send_message
+        </h3>
 
-        <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
-          <!-- Web3Forms Access Key -->
+        <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4 sm:space-y-6">
           <input type="hidden" name="access_key" value="c6c37b81-84e5-404d-9332-ed08fefb0e66">
-
-          <!-- Honeypot spam protection -->
           <input type="checkbox" name="botcheck" id="" style="display: none;">
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
-              <label for="firstName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                First Name
+              <label for="firstName" class="block text-[0.65rem] sm:text-xs font-medium text-text-secondary mb-1.5 sm:mb-2">
+                <span class="text-accent">&gt;</span> first_name
               </label>
               <input
                 type="text"
                 id="firstName"
                 name="firstName"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
+                class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-bg border border-border text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors text-xs sm:text-sm font-mono"
                 required
               />
             </div>
             <div>
-              <label for="lastName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Last Name
+              <label for="lastName" class="block text-[0.65rem] sm:text-xs font-medium text-text-secondary mb-1.5 sm:mb-2">
+                <span class="text-accent">&gt;</span> last_name
               </label>
               <input
                 type="text"
                 id="lastName"
                 name="lastName"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
+                class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-bg border border-border text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors text-xs sm:text-sm font-mono"
                 required
               />
             </div>
           </div>
 
           <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Email
+            <label for="email" class="block text-[0.65rem] sm:text-xs font-medium text-text-secondary mb-1.5 sm:mb-2">
+              <span class="text-accent">&gt;</span> email
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
+              class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-bg border border-border text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors text-xs sm:text-sm font-mono"
               required
             />
           </div>
 
           <div>
-            <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Subject
+            <label for="subject" class="block text-[0.65rem] sm:text-xs font-medium text-text-secondary mb-1.5 sm:mb-2">
+              <span class="text-accent">&gt;</span> subject
             </label>
             <input
               type="text"
               id="subject"
               name="subject"
-              class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
+              class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-bg border border-border text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors text-xs sm:text-sm font-mono"
               required
             />
           </div>
 
           <div>
-            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Message
+            <label for="message" class="block text-[0.65rem] sm:text-xs font-medium text-text-secondary mb-1.5 sm:mb-2">
+              <span class="text-accent">&gt;</span> message
             </label>
             <textarea
               id="message"
               name="message"
               rows="5"
-              class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-800 text-gray-900 dark:text-white resize-none"
+              class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-bg border border-border text-text-primary placeholder:text-text-tertiary focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-colors resize-none text-xs sm:text-sm font-mono"
               required
             ></textarea>
           </div>
 
           <button
             type="submit"
-            class="w-full inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl"
+            class="w-full px-6 py-2.5 sm:py-3 bg-accent text-bg font-medium hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 transition-colors uppercase tracking-wider text-xs sm:text-sm"
           >
-            Send Message
-            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-            </svg>
+            [SEND_MESSAGE]
           </button>
         </form>
       </div>
 
-      <!-- Contact Information -->
-      <div class="space-y-8">
+      <div class="space-y-6 sm:space-y-8">
         <div>
-          <h4 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-            Get in touch
-          </h4>
-          <p class="text-gray-600 dark:text-gray-300 mb-8">
+          <h3 class="text-lg sm:text-xl font-bold text-text-primary mb-4 sm:mb-6">
+            <span class="text-accent">&gt;</span> get_in_touch
+          </h3>
+          <p class="text-text-secondary text-xs sm:text-sm mb-6 sm:mb-8">
             I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and development.
           </p>
         </div>
 
-        <!-- Contact Methods -->
-        <div class="space-y-6">
+        <div class="space-y-4 border border-border p-4 sm:p-6 bg-surface">
           <div class="flex items-center">
-            <div class="w-12 h-12 bg-blue-100 dark:bg-slate-700 rounded-lg flex items-center justify-center mr-4">
-              <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-            </div>
-            <div>
-              <div class="font-semibold text-gray-900 dark:text-white">Email</div>
-              <a href={`mailto:${CONTACT_LINKS.email}`} class="text-blue-600 dark:text-blue-400 hover:underline">
+            <span class="text-accent mr-3 text-xs sm:text-sm">$</span>
+            <div class="min-w-0">
+              <div class="text-[0.65rem] sm:text-xs font-medium text-text-primary">email</div>
+              <a href={`mailto:${CONTACT_LINKS.email}`} class="text-accent hover:text-accent-hover transition-colors text-[0.65rem] sm:text-xs break-all">
                 {CONTACT_LINKS.email}
               </a>
             </div>
           </div>
 
+          <div class="border-t border-border"></div>
+
           <div class="flex items-center">
-            <div class="w-12 h-12 bg-blue-100 dark:bg-slate-700 rounded-lg flex items-center justify-center mr-4">
-              <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-            </div>
+            <span class="text-accent mr-3 text-xs sm:text-sm">$</span>
             <div>
-              <div class="font-semibold text-gray-900 dark:text-white">Location</div>
-              <div class="text-gray-600 dark:text-slate-400">Remote / Philippines</div>
+              <div class="text-[0.65rem] sm:text-xs font-medium text-text-primary">location</div>
+              <div class="text-text-secondary text-[0.65rem] sm:text-xs">Remote / Philippines</div>
             </div>
           </div>
 
+          <div class="border-t border-border"></div>
+
           <div class="flex items-center">
-            <div class="w-12 h-12 bg-blue-100 dark:bg-slate-700 rounded-lg flex items-center justify-center mr-4">
-              <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </div>
+            <span class="text-accent mr-3 text-xs sm:text-sm">$</span>
             <div>
-              <div class="font-semibold text-gray-900 dark:text-white">Response Time</div>
-              <div class="text-gray-600 dark:text-slate-400">Usually within 24 hours</div>
+              <div class="text-[0.65rem] sm:text-xs font-medium text-text-primary">response_time</div>
+              <div class="text-text-secondary text-[0.65rem] sm:text-xs">Usually within 24 hours</div>
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
   </div>

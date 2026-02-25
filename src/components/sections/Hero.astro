@@ -3,130 +3,43 @@ import type { Page } from '../../shared/payload-types'
 import type { PaginatedResponse } from '../../shared/types'
 import api from '../../shared/api'
 import Button from '../ui/Button.astro'
-import RichText from '../RichText.astro'
 
 const res = await api.get('api/pages?where[slug][equals]=home')
 const data = (await res.json()) as PaginatedResponse<Page>
 const homeData = data.docs[0]
 ---
 
-<section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden pt-10 md:pt-0">
-  <!-- Professional Background Elements -->
-  <div class="absolute inset-0">
-    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/5 via-transparent to-purple-600/5 dark:from-blue-400/10 dark:via-transparent dark:to-purple-400/10"></div>
-    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/10 to-purple-400/10 dark:from-blue-500/20 dark:to-purple-500/20 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 dark:from-purple-500/20 dark:to-blue-500/20 rounded-full blur-3xl"></div>
-  </div>
-
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="text-center max-w-4xl mx-auto">
-      <!-- Greeting -->
-      <div class="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium mb-6 animate-fade-in-up">
-        <span class="mr-2">👋</span>
-        {homeData.subheader || "Hello, I'm"}
+<section class="relative min-h-[85vh] flex items-center justify-center bg-bg pt-16 overflow-hidden">
+  <div class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="border border-border p-5 sm:p-8 md:p-12 lg:p-16 bg-surface/50">
+      <div class="mb-6 sm:mb-8">
+        <p class="text-accent text-[0.6rem] sm:text-xs mb-3 sm:mb-4">// welcome_to_my_terminal</p>
+        <h1 class="font-pixel text-accent text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-relaxed tracking-wide">
+          cjjaaayyyy
+        </h1>
       </div>
 
-      <!-- Main Heading -->
-      <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in-up" style="animation-delay: 0.1s;">
-        {homeData.header || "Christian Anunciado"}
-      </h1>
-
-            <!-- Description -->
-      <div class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s;">
-        <p>
-          I build modern, scalable apps and AI solutions shaped by real-world needs and user feedback.
+      <div class="space-y-3 sm:space-y-4 mb-8 sm:mb-10">
+        <p class="text-text-secondary text-xs sm:text-sm md:text-base">
+          <span class="text-accent">&gt;</span> Full-Stack & AI Engineer
+        </p>
+        <p class="text-text-secondary text-xs sm:text-sm md:text-base blink-cursor">
+          <span class="text-accent">&gt;</span> Building modern, scalable apps and AI solutions
         </p>
       </div>
 
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style="animation-delay: 0.3s;">
-        {homeData.action_buttons?.map((button, index) => {
-          let href = '#'
-          if (button.link && typeof button.link === 'object') {
-            if ('slug' in button.link && button.link.slug) {
-              href = `/${button.link.slug}`
-            }
-          }
-
-          return (
-            <Button
-              href={href}
-              variant={index === 0 ? 'primary' : 'secondary'}
-              size="lg"
-            >
-              {button.text || 'Learn More'}
-            </Button>
-          )
-        })}
-
-        <Button href="/#contact" variant="primary" size="lg">
-          Get In Touch
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+        <Button href="/#projects" variant="primary" size="lg">
+          [VIEW_WORK]
         </Button>
-        <Button href="/#projects" variant="secondary" size="lg">
-          View My Work
+        <Button href="/#contact" variant="outline" size="lg">
+          [GET_IN_TOUCH]
         </Button>
-
-        <!-- Download Resume with creative floating elements -->
-        <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-6 sm:mt-0 relative">
-          <div class="flex items-center gap-2 animate-bounce" style="animation-delay: 0.5s;">
-            <span class="text-transparent bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-base sm:text-lg font-bold italic">or grab my</span>
-            <div class="flex space-x-1">
-              <div class="w-1 h-1 bg-blue-400 rounded-full animate-ping" style="animation-delay: 0.1s;"></div>
-              <div class="w-1 h-1 bg-purple-400 rounded-full animate-ping" style="animation-delay: 0.2s;"></div>
-              <div class="w-1 h-1 bg-pink-400 rounded-full animate-ping" style="animation-delay: 0.3s;"></div>
-            </div>
-          </div>
-
-          <div class="relative hidden sm:block">
-            <!-- Floating curved arrow - hidden on mobile -->
-            <svg class="w-8 h-6 text-blue-500 dark:text-blue-400 animate-pulse transform rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-            <!-- Sparkle effect -->
-            <div class="absolute -top-1 -right-1 w-2 h-2 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
-          </div>
-
-          <!-- Mobile arrow - simpler version -->
-          <div class="block sm:hidden">
-            <svg class="w-6 h-4 text-blue-500 dark:text-blue-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </div>
-
-          <div class="relative group">
-            <Button href="https://drive.google.com/file/d/1lCZh12ib0HNynoFtNoNC-SDb2MOI8B1P/view?usp=sharing" variant="outline" size="lg" target="_blank" rel="noopener noreferrer" class="transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg w-full sm:w-auto">
-              📄 Resume
-            </Button>
-            <!-- Floating badge -->
-            <div class="absolute -top-2 -right-2 bg-gradient-to-r from-green-400 to-blue-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
-              PDF
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Key Highlights -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 animate-fade-in-up" style="animation-delay: 0.4s;">
-        <div class="text-center p-6 bg-white/10 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-white/20 dark:border-slate-700/50">
-          <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">Full-Stack</div>
-          <div class="text-gray-700 dark:text-slate-300">Development</div>
-        </div>
-        <div class="text-center p-6 bg-white/10 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-white/20 dark:border-slate-700/50">
-          <div class="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">Modern & AI-driven</div>
-          <div class="text-gray-700 dark:text-slate-300">Applications</div>
-        </div>
-        <div class="text-center p-6 bg-white/10 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-white/20 dark:border-slate-700/50">
-          <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">Client-Focused</div>
-          <div class="text-gray-700 dark:text-slate-300">Solutions</div>
-        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-    </svg>
+    <div class="mt-4 sm:mt-6 text-text-tertiary text-[0.6rem] sm:text-xs">
+      <span class="text-accent">//</span> {homeData?.header || "christian anunciado"} — portfolio v2.0
+    </div>
   </div>
 </section>

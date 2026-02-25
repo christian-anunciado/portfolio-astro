@@ -1,5 +1,4 @@
 ---
-import { BxArrowBack } from "../assets/icons/tsx/BackArrow";
 import { cn } from "../shared/cn";
 
 const { className, id } = Astro.props;
@@ -7,12 +6,11 @@ const { className, id } = Astro.props;
 
 <a
   class={cn(
-    "flex max-w-fit cursor-pointer items-center gap-2 text-base text-neutral-500/80 transition-all hover:-translate-y-0.5 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-white",
+    "flex max-w-fit cursor-pointer items-center gap-2 text-sm text-text-secondary transition-colors hover:text-accent font-mono",
     className,
   )}
   href={`/projects#${id}`}
   data-astro-prefetch
 >
-  <BxArrowBack className="icon h-6 w-6 md:h-7 md:w-7" />
-  Back
+  &lt; back
 </a>

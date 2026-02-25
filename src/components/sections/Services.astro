@@ -1,97 +1,90 @@
 ---
-import Button from '../ui/Button.astro'
-
 const services = [
   {
-    icon: '🌐',
     title: 'Modern Web Development',
     description: 'Custom web applications built with modern frameworks like React, Next.js, and Astro. Responsive, fast, and user-friendly.',
-    features: ['Responsive Design', 'Performance Optimization', 'SEO Friendly', 'Cross-browser Compatible']
+    features: ['Responsive Design', 'Performance Optimization', 'SEO Friendly', 'Cross-browser Compatible'],
+    icon: 'globe'
   },
   {
-    icon: '🤖',
     title: 'AI Integration',
     description: 'Intelligent applications powered by AI technologies. From chatbots to predictive analytics and automation.',
-    features: ['OpenAI Integration', 'Custom AI Models', 'Natural Language Processing', 'AI-Powered Automation']
+    features: ['OpenAI Integration', 'Custom AI Models', 'Natural Language Processing', 'AI-Powered Automation'],
+    icon: 'cpu'
   },
   {
-    icon: '🔧',
     title: 'API Development',
     description: 'RESTful and GraphQL APIs that power your applications with robust, secure, and well-documented endpoints.',
-    features: ['RESTful APIs', 'GraphQL', 'Authentication & Security', 'API Documentation']
+    features: ['RESTful APIs', 'GraphQL', 'Authentication & Security', 'API Documentation'],
+    icon: 'terminal'
   },
   {
-    icon: '🎨',
     title: 'UI/UX Design',
     description: 'User-centered design that combines beautiful aesthetics with intuitive functionality and seamless user experiences.',
-    features: ['User Research', 'Wireframing & Prototyping', 'Design Systems', 'Usability Testing']
+    features: ['User Research', 'Wireframing & Prototyping', 'Design Systems', 'Usability Testing'],
+    icon: 'palette'
   }
 ]
 ---
 
-<section id="services" class="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Header -->
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-4">
-        Services
+<section id="services" class="relative py-16 sm:py-24 lg:py-32 bg-bg-subtle overflow-hidden">
+  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-10 sm:mb-16">
+      <p class="text-xs font-medium tracking-widest text-text-tertiary mb-3">
+        <span class="text-accent">//</span> services
+      </p>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary mb-4 sm:mb-6">
+        <span class="text-accent">&gt;</span> What I Can Do For You
       </h2>
-      <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-        What I Can Do For You
-      </h3>
-      <p class="text-xl text-gray-600 dark:text-gray-300">
-        From concept to deployment, I provide end-to-end solutions including AI-powered applications that help your business grow and succeed in the digital world.
+      <p class="text-xs sm:text-sm text-text-secondary max-w-3xl">
+        From concept to deployment, I provide end-to-end solutions including AI-powered applications that help your business grow.
       </p>
     </div>
 
-    <!-- Services Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
       {services.map((service) => (
-        <div class="bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/50 dark:border-slate-600/50">
-          <!-- Icon -->
-          <div class="text-4xl mb-4">{service.icon}</div>
+        <div class="bg-surface border border-border p-5 sm:p-8 hover:border-accent/30 transition-colors duration-200">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 text-accent mb-4 sm:mb-6">
+            {service.icon === 'globe' && (
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+              </svg>
+            )}
+            {service.icon === 'cpu' && (
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z" />
+              </svg>
+            )}
+            {service.icon === 'terminal' && (
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
+              </svg>
+            )}
+            {service.icon === 'palette' && (
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+              </svg>
+            )}
+          </div>
 
-          <!-- Title -->
-          <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-4">
+          <h3 class="text-base sm:text-lg font-bold text-text-primary mb-2 sm:mb-3">
             {service.title}
-          </h4>
+          </h3>
 
-          <!-- Description -->
-          <p class="text-gray-600 dark:text-gray-300 mb-6">
+          <p class="text-text-secondary text-xs sm:text-sm mb-4 sm:mb-6">
             {service.description}
           </p>
 
-          <!-- Features -->
-          <ul class="space-y-2">
+          <ul class="space-y-1.5 sm:space-y-2">
             {service.features.map((feature) => (
-              <li class="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                <svg class="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
+              <li class="flex items-center text-[0.65rem] sm:text-xs text-text-secondary">
+                <span class="text-accent mr-2">-</span>
                 {feature}
               </li>
             ))}
           </ul>
         </div>
       ))}
-    </div>
-
-    <!-- CTA Section -->
-    <div class="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 shadow-lg text-white">
-      <h4 class="text-2xl font-bold text-white mb-4">
-        Ready to Start Your Project?
-      </h4>
-      <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
-        Let's discuss your ideas and turn them into reality. I'm here to help you build something amazing.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/#contact" variant="secondary" size="lg">
-          Get Started Today
-        </Button>
-        <Button href="/projects" variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-purple-600">
-          View My Work
-        </Button>
-      </div>
     </div>
   </div>
 </section>
