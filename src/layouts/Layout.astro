@@ -81,19 +81,13 @@ const MEASUREMENT_ID = import.meta.env.GA_MEASUREMENT_ID;
     })} />
 
     <!-- Google tag (gtag.js) -->
-    <script
-      is:inline
-      type="text/partytown"
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`}
-    ></script>
-    <script type="text/partytown" is:inline>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ MEASUREMENT_ID }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", MEASUREMENT_ID);
     </script>
 
