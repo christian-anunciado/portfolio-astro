@@ -10,7 +10,10 @@ const res = await api.get("api/projects?sort=sortOrder");
 const data = (await res.json()) as PaginatedResponse<Project>;
 ---
 
-<Layout>
+<Layout
+  title="Projects | Christian Anunciado"
+  description="Explore projects by Christian Anunciado — web applications, AI-powered solutions, and full-stack development work."
+>
   <ProjectHero projects={data.docs} />
   <ProjectBento projects={data.docs} />
 </Layout>

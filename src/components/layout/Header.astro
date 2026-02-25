@@ -43,11 +43,11 @@ const headerData = (await res.json()) as HeaderType
           [RESUME]
         </a>
 
-        <ThemeToggle />
+        <ThemeToggle id="theme-toggle-desktop" />
       </nav>
 
       <div class="md:hidden flex items-center space-x-2 sm:space-x-4">
-        <ThemeToggle />
+        <ThemeToggle id="theme-toggle-mobile" />
         <MobileMenu />
       </div>
     </div>

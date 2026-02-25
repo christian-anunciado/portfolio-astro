@@ -2,13 +2,14 @@
 interface Props {
   className?: string;
   transitionName?: string;
+  as?: "h1" | "h2" | "h3" | "h4";
 }
 
-const { className, transitionName } = Astro.props;
+const { className, transitionName, as: Tag = "h1" } = Astro.props;
 import { cn } from "../shared/cn";
 ---
 
-<h1
+<Tag
   class={cn(
     "text-xl font-bold tracking-wide md:text-2xl font-pixel text-text-primary",
     className,
@@ -16,4 +17,4 @@ import { cn } from "../shared/cn";
   transition:name={transitionName || "headerText"}
 >
   <slot />
-</h1>
+</Tag>

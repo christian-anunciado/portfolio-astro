@@ -10,6 +10,18 @@ import OgImage from "../../public/og_image.jpg";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const defaultTitle = "Christian Anunciado | Full-Stack & AI Engineer";
+const defaultDescription = "Full-stack & AI engineer building modern, scalable web applications and intelligent solutions.";
+
+const { title = defaultTitle, description = defaultDescription, ogImage } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = ogImage || OgImage.src;
 const MEASUREMENT_ID = import.meta.env.GA_MEASUREMENT_ID;
 ---
 
@@ -17,7 +29,6 @@ const MEASUREMENT_ID = import.meta.env.GA_MEASUREMENT_ID;
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -26,20 +37,48 @@ const MEASUREMENT_ID = import.meta.env.GA_MEASUREMENT_ID;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <SEO
-      title="Christian Anunciado | Full-Stack Software Engineer"
-      description="I build well-crafted websites that look good and work well."
+      title={title}
+      description={description}
+      canonical={canonicalURL.href}
       openGraph={{
         basic: {
-          title: "Christian Anunciado | Full-Stack Software Engineer",
-          image: OgImage.src,
+          title: title,
+          image: ogImageURL,
           type: "website",
+          url: canonicalURL.href,
         },
         optional: {
-          description:
-            "I build well-crafted websites that look good and work well.",
+          description: description,
         },
       }}
+      twitter={{
+        card: "summary_large_image",
+        title: title,
+        description: description,
+        image: ogImageURL,
+      }}
     />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "Christian Anunciado",
+          "url": "https://www.christiananunciado.com",
+        },
+        {
+          "@type": "Person",
+          "name": "Christian Anunciado",
+          "url": "https://www.christiananunciado.com",
+          "jobTitle": "Full-Stack & AI Engineer",
+          "sameAs": [
+            "https://github.com/christian-anunciado",
+            "https://www.linkedin.com/in/christiananunciado/"
+          ],
+        }
+      ]
+    })} />
 
     <!-- Google tag (gtag.js) -->
     <script

@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Button from '../components/ui/Button.astro'
+---
+
+<Layout
+  title="404 — Page Not Found | Christian Anunciado"
+  description="The page you're looking for doesn't exist."
+>
+  <section class="min-h-[80vh] flex items-center justify-center bg-bg">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <div class="border border-border p-8 sm:p-12 bg-surface/50">
+        <p class="text-accent text-xs mb-4">// error_404</p>
+        <h1 class="font-pixel text-accent text-4xl sm:text-6xl mb-6">404</h1>
+        <p class="text-text-secondary text-sm mb-2">
+          <span class="text-accent">&gt;</span> page_not_found
+        </p>
+        <p class="text-text-tertiary text-xs mb-8">
+          The resource you requested could not be located on this server.
+        </p>
+        <Button href="/" variant="primary" size="lg">
+          [RETURN_HOME]
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>

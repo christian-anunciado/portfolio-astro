@@ -98,7 +98,7 @@ export const AnimatedTooltip = ({
             </motion.div>
           )}
         </AnimatePresence>
-        <a href={items.href} target="_blank" rel="noreferrer">
+        <a href={items.href} target="_blank" rel="noopener noreferrer">
           <img
             onMouseMove={handleMouseMove}
             height={imgHeight ?? 36}

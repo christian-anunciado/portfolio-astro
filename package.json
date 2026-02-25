@@ -13,6 +13,7 @@
     "@astrojs/check": "^0.5.4",
     "@astrojs/partytown": "^2.0.4",
     "@astrojs/react": "^3.0.10",
+    "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@fontsource/press-start-2p": "^5.2.7",

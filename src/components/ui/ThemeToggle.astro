@@ -1,54 +1,56 @@
 ---
 // Theme toggle component
+interface Props {
+  id?: string;
+}
+const { id = "theme-toggle" } = Astro.props;
 ---
 
 <button
-  id="theme-toggle"
+  id={id}
   type="button"
-  class="inline-flex items-center justify-center px-2 py-1 text-xs font-mono text-text-secondary hover:text-accent border border-border hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent transition-colors uppercase tracking-wider"
+  class="theme-toggle inline-flex items-center justify-center px-2 py-1 text-xs font-mono text-text-secondary hover:text-accent border border-border hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent transition-colors uppercase tracking-wider"
   aria-label="Toggle theme"
 >
-  <span id="theme-toggle-dark-label" class="hidden">[LIGHT]</span>
-  <span id="theme-toggle-light-label" class="hidden">[DARK]</span>
+  <span class="theme-dark-label hidden">[LIGHT]</span>
+  <span class="theme-light-label hidden">[DARK]</span>
 </button>
 
 <script>
-  const themeToggleBtn = document.getElementById('theme-toggle');
-  const darkLabel = document.getElementById('theme-toggle-dark-label');
-  const lightLabel = document.getElementById('theme-toggle-light-label');
+  function initThemeToggles() {
+    const toggles = document.querySelectorAll('.theme-toggle');
 
-  function updateThemeLabels() {
-    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      darkLabel?.classList.remove('hidden');
-      lightLabel?.classList.add('hidden');
-    } else {
-      darkLabel?.classList.add('hidden');
-      lightLabel?.classList.remove('hidden');
+    function updateAllLabels() {
+      const isDark = localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      toggles.forEach(btn => {
+        const darkLabel = btn.querySelector('.theme-dark-label');
+        const lightLabel = btn.querySelector('.theme-light-label');
+        if (isDark) {
+          darkLabel?.classList.remove('hidden');
+          lightLabel?.classList.add('hidden');
+        } else {
+          darkLabel?.classList.add('hidden');
+          lightLabel?.classList.remove('hidden');
+        }
+      });
     }
+
+    updateAllLabels();
+
+    toggles.forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !document.documentElement.classList.contains('dark'))) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+        updateAllLabels();
+      });
+    });
   }
 
-  updateThemeLabels();
-
-  themeToggleBtn?.addEventListener('click', function() {
-    if (localStorage.getItem('theme')) {
-      if (localStorage.getItem('theme') === 'light') {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-    } else {
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-    }
-    updateThemeLabels();
-  });
-
-  document.addEventListener('astro:page-load', updateThemeLabels);
+  initThemeToggles();
+  document.addEventListener('astro:page-load', initThemeToggles);
 </script>
